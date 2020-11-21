@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class Tests
+    public class Integration5CookControllerTests
     {
         [SetUp]
         public void Setup()
@@ -10,7 +10,7 @@ namespace Microwave.Test.Integration
         }
 
         [Test]
-        public void Test1()
+        public void TestTest()
         {
             Assert.Pass();
         }

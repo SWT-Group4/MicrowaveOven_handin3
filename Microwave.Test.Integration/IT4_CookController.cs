@@ -1,6 +1,4 @@
 using NUnit.Framework;
-using System;
-using NUnit.Framework;
 using NSubstitute;
 using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
