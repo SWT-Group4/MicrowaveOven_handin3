@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Microwave.Test.Integration
 {
-    public class Integration5CookControllerTests
+    public class IT5_CookController
     {
         [SetUp]
         public void Setup()

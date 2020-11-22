@@ -3,11 +3,12 @@ using NSubstitute;
 using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
+using NSubstitute.Core.Arguments;
 
 namespace Microwave.Test.Integration
 {
     [TestFixture]
-    public class Integration4CookControllerTests
+    public class IT4_CookController
     {   
         // System Under Test
         private CookController _sut;
@@ -32,22 +33,20 @@ namespace Microwave.Test.Integration
             _stubPowerTube = Substitute.For<IPowerTube>();
             _stubDisplay = Substitute.For<IDisplay>();
             _stubLight = Substitute.For<ILight>();
-
+            
             _timer = new Timer();
 
             _sut = new CookController(_timer, _stubDisplay, _stubPowerTube, _stubUi);
-
-            
         }
 
         [Test]
-        public void StartCooking_ValidParameter_PowerTubeIsOn()
+        public void StartCooking_ValidParameters_TimerIsRunning()
         {
             // Act
-            _sut.StartCooking(TwoKiloWatt, FiveSeconds);
+            _sut.StartCooking(50, 2000);
             
             // Assert
-            //_stubPowerTube.Received()
+            _stubDisplay.ReceivedWithAnyArgs().ShowTime(default, default);
         }
 
 
