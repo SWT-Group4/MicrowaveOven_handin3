@@ -66,8 +66,6 @@ namespace Microwave.Test.Integration
                     }
                 }
             }
-            // Timer has expired time is 00:00
-            _stubDisplay.Received().ShowTime(Arg.Is<int>(0), Arg.Is<int>(0));
         }
 
         [Test]
