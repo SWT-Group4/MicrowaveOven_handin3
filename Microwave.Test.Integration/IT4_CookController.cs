@@ -12,31 +12,33 @@ namespace Microwave.Test.Integration
     [TestFixture]
     public class IT4_CookController
     {
-        
-        // System Under Test
-        private CookController _sut;
-
-        // Real objects
-        private Timer _timer;
-        private Timer _refTimer;
-
         // Fakes
         private IUserInterface _stubUi;
         private IPowerTube _stubPowerTube;
         private IDisplay _stubDisplay;
         private ILight _stubLight;
 
+        // Real objects
+        private Timer _timer;
+        private Timer _refTimer;
+
+        // System Under Test
+        private CookController _sut;
+
         [SetUp]
         public void Setup()
         {
+            // Fakes
             _stubUi = Substitute.For<IUserInterface>();
             _stubPowerTube = Substitute.For<IPowerTube>();
             _stubDisplay = Substitute.For<IDisplay>();
             _stubLight = Substitute.For<ILight>();
-            
+
+            // Real objects
             _timer = new Timer();
             _refTimer = new Timer();
 
+            // System Under Test
             _sut = new CookController(_timer, _stubDisplay, _stubPowerTube, _stubUi);
         }
 
