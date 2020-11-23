@@ -37,7 +37,7 @@ namespace Microwave.Classes.Controllers
             timer.TimerTick += new EventHandler(OnTimerTick);
         }
 
-        // UI passes power as Watss while PowerTube expects power as percentage.
+        // UI passes power as Watts while PowerTube expects power as percentage.
         // This is an error that we have corrected in the below function
         public void StartCooking(int power, int time)
         {
@@ -68,6 +68,9 @@ namespace Microwave.Classes.Controllers
         {
             if (isCooking)
             {
+                // TimeRemaining argument from event is in miliseconds,
+                // but showtime expects it in seconds. This defect is
+                // Corrected by dividing TimeRemaining with 1000
                 int secondsRemaining = myTimer.TimeRemaining / 1000;
                 myDisplay.ShowTime(secondsRemaining / 60, secondsRemaining % 60);
             }

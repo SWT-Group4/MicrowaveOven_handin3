@@ -40,95 +40,126 @@ namespace Microwave.Test.Integration
             _sut = new CookController(_timer, _stubDisplay, _stubPowerTube, _stubUi);
         }
 
-        [Test]
-        public void StartCooking_ValidParameters_DisplayShowCorrectTime()
+        // TC-01
+        [Test] public void StartCooking_TimerStarts_PowerTubeTurnsOn()
         {
             // Arrange
-            int expMinutes = 0;
-            int expSeconds = 3;
+            int inputPower = 350;
+            int expectedPercentage = 50;
+            int timerSetting = 2000;
             // Ensure test only executes once
             bool oneShot = true;
 
             // Act
-            _sut.StartCooking(50, 5000);
-            _refTimer.Start(5000);
+            _sut.StartCooking(inputPower, timerSetting);
+            // ref timer has 100ms extra to ensure the sut timer expires first
+            _refTimer.Start(timerSetting + 100);
 
-            // Assert
             while (_refTimer.TimeRemaining > 0)
             {
+                if (oneShot)
+                {
+                    oneShot = false;
+                    // Assert Power "consumption" in tube is expectedPercentage
+                    _stubPowerTube.Received().TurnOn(expectedPercentage);
+                }
+            }
+        }
+        
+        // TC-02
+        [Test]
+        public void StartCooking_ValidParameters_DisplayShowCorrectTime()
+        {
+            // Arrange
+            int expectedMinutes = 0;
+            int expectedSeconds = 3;
+            int timerSetting = 5000;
+            // Ensure test only executes once
+            bool oneShot = true;
+
+            // Act
+            _sut.StartCooking(50, timerSetting);
+            _refTimer.Start(timerSetting);
+
+            while (_refTimer.TimeRemaining > 0)
+            {
+                // Probe when reference timer is at 3000ms
                 if (_refTimer.TimeRemaining == 3000)
                 {
                     if (oneShot)
                     {
                         oneShot = false;
-                        //_stubDisplay.ReceivedWithAnyArgs().ShowTime(minutes, seconds);
-                        _stubDisplay.Received().ShowTime(Arg.Is<int>(expMinutes), Arg.Is<int>(expSeconds));
+                        
+                        // Assert
+                        _stubDisplay.Received().ShowTime(
+                            Arg.Is<int>(expectedMinutes),
+                            Arg.Is<int>(expectedSeconds));
                     }
                 }
             }
         }
 
+        // TC-03
         [Test]
         public void StartCooking_TimerExpires_DisplayShowCorrectTime()
         {
             // Arrange
-
+            int timerSetting = 5000;
             // Act
-            _sut.StartCooking(50, 5000);
-            // Make ref timer 100ms longer to ensure the sut timer has expired
-            _refTimer.Start(5100);
+            _sut.StartCooking(350, timerSetting);
+            
+            // ref timer has 100ms extra to ensure the sut timer expires first
+            _refTimer.Start(timerSetting+100);
 
-            // Assert
             while (_refTimer.TimeRemaining > 0)
             {
-                // Wait until timer expires
+                // Wait until reference timer expires
             }
-            // Timer has expired time is 00:00
-            _stubDisplay.Received().ShowTime(Arg.Is<int>(0), Arg.Is<int>(0));
+
+            // Assert time is 00:00
+            _stubDisplay.Received().ShowTime(
+                Arg.Is<int>(0),
+                Arg.Is<int>(0));
         }
 
-        [Test]
-        public void StartCooking_TimerStarts_PowerTubeTurnsOn()
-        {
-            // Arrange
-            // Ensure test only executes once
-            bool oneShot = true;
-
-            // Act
-            _sut.StartCooking(50, 2000);
-            // Make ref timer 100ms longer to ensure the sut timer has expired
-            _refTimer.Start(2100);
-
-            // Assert
-            while (_refTimer.TimeRemaining > 0)
-            {
-                if (oneShot)
-                { 
-                    oneShot = false;
-                    // Power tube is on while timer counts
-                    _stubPowerTube.Received().TurnOn(50);
-                }
-            }
-        }
-
+        // TC-04
         [Test]
         public void StartCooking_TimerExpires_PowerTubeTurnsOff()
         {
             // Arrange
-
+            int timerSetting = 2000;
             // Act
-            _sut.StartCooking(50, 2000);
-            // Make ref timer 100ms longer to ensure the sut timer has expired
-            _refTimer.Start(2100);
+            _sut.StartCooking(350, timerSetting);
+            // ref timer has 100ms extra to ensure the sut timer expires first
+            _refTimer.Start(timerSetting+100);
 
             while (_refTimer.TimeRemaining > 0)
             {
                 // Wait until timer expires
             }
 
-            // Assert
-            // Timer expired power tube is set off
+            // Assert power tube is set off when timer expires
             _stubPowerTube.Received().TurnOff();
+        }
+
+        // TC-05
+        [Test]
+        public void StartCooking_TimerExpires_UICookingIsDone()
+        {
+            // Arrange
+            int timerSetting = 2000;
+            // Act
+            _sut.StartCooking(350, timerSetting);
+            // ref timer has 100ms extra to ensure the sut timer expires first
+            _refTimer.Start(timerSetting + 100);
+
+            while (_refTimer.TimeRemaining > 0)
+            {
+                // Wait until timer expires
+            }
+
+            // Assert power tube is set off when timer expires
+            _stubUi.Received().CookingIsDone();
         }
     }
 }
