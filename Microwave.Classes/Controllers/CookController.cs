@@ -37,9 +37,12 @@ namespace Microwave.Classes.Controllers
             timer.TimerTick += new EventHandler(OnTimerTick);
         }
 
+        // UI passes power as Watss while PowerTube expects power as percentage.
+        // This is an error that we have corrected in the below function
         public void StartCooking(int power, int time)
         {
-            myPowerTube.TurnOn(power);
+            int percentagePower = (power * 100) / 700 ; // 700 is maximum power
+            myPowerTube.TurnOn(percentagePower);
             myTimer.Start(time);
             isCooking = true;
         }
