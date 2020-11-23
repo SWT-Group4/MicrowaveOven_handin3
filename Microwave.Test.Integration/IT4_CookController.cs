@@ -2,9 +2,6 @@ using NUnit.Framework;
 using NSubstitute;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
-using NSubstitute.Core.Arguments;
-using System;
-using System.Threading;
 using Timer = Microwave.Classes.Boundary.Timer;
 
 namespace Microwave.Test.Integration
@@ -62,6 +59,7 @@ namespace Microwave.Test.Integration
                 if (oneShot)
                 {
                     oneShot = false;
+
                     // Assert Power "consumption" in tube is expectedPercentage
                     _stubPowerTube.Received().TurnOn(expectedPercentage);
                 }
@@ -107,9 +105,9 @@ namespace Microwave.Test.Integration
         {
             // Arrange
             int timerSetting = 5000;
+
             // Act
             _sut.StartCooking(350, timerSetting);
-            
             // ref timer has 100ms extra to ensure the sut timer expires first
             _refTimer.Start(timerSetting+100);
 
@@ -130,6 +128,7 @@ namespace Microwave.Test.Integration
         {
             // Arrange
             int timerSetting = 2000;
+
             // Act
             _sut.StartCooking(350, timerSetting);
             // ref timer has 100ms extra to ensure the sut timer expires first
@@ -150,6 +149,7 @@ namespace Microwave.Test.Integration
         {
             // Arrange
             int timerSetting = 2000;
+
             // Act
             _sut.StartCooking(350, timerSetting);
             // ref timer has 100ms extra to ensure the sut timer expires first

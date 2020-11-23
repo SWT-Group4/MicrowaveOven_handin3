@@ -2,9 +2,6 @@ using NUnit.Framework;
 using NSubstitute;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
-using NSubstitute.Core.Arguments;
-using System;
-using System.Threading;
 using Microwave.Classes.Boundary;
 
 namespace Microwave.Test.Integration
@@ -66,6 +63,7 @@ namespace Microwave.Test.Integration
             int inputPower = 350;
             int timerSetting = 2000;
             int expectedPowerPercentage = 50;
+
             // Act
             _sut.StartCooking(inputPower, timerSetting);
 
@@ -87,6 +85,7 @@ namespace Microwave.Test.Integration
             int timerSetting = (10*minutes)+(15*seconds);
 
             _fakeTimer.TimeRemaining.Returns(timerSetting);
+
             // Act
             _sut.StartCooking(inputPower, 2500);
             _fakeTimer.TimerTick += Raise.Event();
