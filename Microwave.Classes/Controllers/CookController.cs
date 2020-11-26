@@ -68,10 +68,7 @@ namespace Microwave.Classes.Controllers
         {
             if (isCooking)
             {
-                // TimeRemaining argument from event is in miliseconds,
-                // but showtime expects it in seconds. This defect is
-                // Corrected by dividing TimeRemaining with 1000
-                int secondsRemaining = myTimer.TimeRemaining / 1000;
+                int secondsRemaining = myTimer.TimeRemaining;
                 myDisplay.ShowTime(secondsRemaining / 60, secondsRemaining % 60);
             }
         }

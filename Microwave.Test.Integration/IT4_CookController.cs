@@ -45,14 +45,14 @@ namespace Microwave.Test.Integration
             // Arrange
             int inputPower = 350;
             int expectedPercentage = 50;
-            int timerSetting = 2000;
+            int timerSetting = 2;
             // Ensure test only executes once
             bool oneShot = true;
 
             // Act
             _sut.StartCooking(inputPower, timerSetting);
             // ref timer has 100ms extra to ensure the sut timer expires first
-            _refTimer.Start(timerSetting + 100);
+            _refTimer.Start(timerSetting + 1);
 
             while (_refTimer.TimeRemaining > 0)
             {
@@ -73,7 +73,7 @@ namespace Microwave.Test.Integration
             // Arrange
             int expectedMinutes = 0;
             int expectedSeconds = 3;
-            int timerSetting = 5000;
+            int timerSetting = 5;
             // Ensure test only executes once
             bool oneShot = true;
 
@@ -84,7 +84,7 @@ namespace Microwave.Test.Integration
             while (_refTimer.TimeRemaining > 0)
             {
                 // Probe when reference timer is at 3000ms
-                if (_refTimer.TimeRemaining == 3000)
+                if (_refTimer.TimeRemaining == 3)
                 {
                     if (oneShot)
                     {
@@ -104,12 +104,12 @@ namespace Microwave.Test.Integration
         public void StartCooking_TimerExpires_DisplayShowCorrectTime()
         {
             // Arrange
-            int timerSetting = 5000;
+            int timerSetting = 5;
 
             // Act
             _sut.StartCooking(350, timerSetting);
-            // ref timer has 100ms extra to ensure the sut timer expires first
-            _refTimer.Start(timerSetting+100);
+            // ref timer has 1s extra to ensure the sut timer expires first
+            _refTimer.Start(timerSetting+1);
 
             while (_refTimer.TimeRemaining > 0)
             {
@@ -127,12 +127,12 @@ namespace Microwave.Test.Integration
         public void StartCooking_TimerExpires_PowerTubeTurnsOff()
         {
             // Arrange
-            int timerSetting = 2000;
+            int timerSetting = 2;
 
             // Act
             _sut.StartCooking(350, timerSetting);
             // ref timer has 100ms extra to ensure the sut timer expires first
-            _refTimer.Start(timerSetting+100);
+            _refTimer.Start(timerSetting+1);
 
             while (_refTimer.TimeRemaining > 0)
             {
@@ -148,12 +148,12 @@ namespace Microwave.Test.Integration
         public void StartCooking_TimerExpires_UICookingIsDone()
         {
             // Arrange
-            int timerSetting = 2000;
+            int timerSetting = 2;
 
             // Act
             _sut.StartCooking(350, timerSetting);
             // ref timer has 100ms extra to ensure the sut timer expires first
-            _refTimer.Start(timerSetting + 100);
+            _refTimer.Start(timerSetting + 1);
 
             while (_refTimer.TimeRemaining > 0)
             {

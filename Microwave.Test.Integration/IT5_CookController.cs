@@ -80,14 +80,14 @@ namespace Microwave.Test.Integration
         {
             // Arrange
             int inputPower = 350;
-            int minutes = 60 * 1000;
-            int seconds = 1000;
+            int minutes = 60;
+            int seconds = 1;
             int timerSetting = (10*minutes)+(15*seconds);
 
             _fakeTimer.TimeRemaining.Returns(timerSetting);
 
             // Act
-            _sut.StartCooking(inputPower, 2500);
+            _sut.StartCooking(inputPower, timerSetting);
             _fakeTimer.TimerTick += Raise.Event();
             
             // Assert output shows 10:15

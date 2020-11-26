@@ -70,7 +70,7 @@ namespace Microwave.Classes.Controllers
                     myDisplay.ShowTime(time, 0);
                     myState = States.SETTIME;
                     break;
-                case States.SETTIME:
+                case States.SETTIME:    //Possible minor error
                     time += 1;
                     myDisplay.ShowTime(time, 0);
                     break;

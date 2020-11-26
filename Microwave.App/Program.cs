@@ -33,18 +33,70 @@ namespace Microwave.App
 
             // Simulate a simple sequence
 
-            powerButton.Press();
+            bool finish = false;
 
-            timeButton.Press();
+            System.Console.WriteLine("Indtast:\n" +
+                                     "(E) Exit\n" +
+                                     "(O) Open Door\n" +
+                                     "(C) Close Door\n" +
+                                     "(P) Power Button, several click increases power\n" +
+                                     "(T) Time Button\n" +
+                                     "(S) Start / Cancel button\n");
 
-            startCancelButton.Press();
+            do
+            {
+                string input = null;
 
-            // The simple sequence should now run
+                // Gate the blocking ReadLine function
+                if (Console.KeyAvailable)
+                {
+                    input = Console.ReadLine();
+                }
+                if (string.IsNullOrEmpty(input)) continue;
 
-            System.Console.WriteLine("When you press enter, the program will stop");
-            // Wait for input
+                input = input.ToUpper();
 
-            System.Console.ReadLine();
+                switch (input[0])
+                {
+                    case 'E':
+                        finish = true;
+                        break;
+
+                    case 'O':
+                        door.Open();
+                        break;
+
+                    case 'C':
+                        door.Close();
+                        break;
+
+                    case 'P':
+                        powerButton.Press();
+                        break;
+
+                    case 'T':
+                        timeButton.Press();
+                        break;
+
+                    case 'S':
+                        startCancelButton.Press();
+                        break;
+
+                    default:
+                        break;
+                }
+
+                System.Console.WriteLine("Indtast:\n" +
+                                         "(E) Exit\n" +
+                                         "(O) Open Door\n" +
+                                         "(C) Close Door\n" +
+                                         "(P) Power Button, several click increases power\n" +
+                                         "(T) Time Button\n" +
+                                         "(S) Start / Cancel button\n");
+
+            } while (!finish);
+
+
         }
     }
 }
