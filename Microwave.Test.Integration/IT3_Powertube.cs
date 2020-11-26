@@ -1,7 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
 using Microwave.Classes.Boundary;
-using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
 
 namespace Microwave.Test.Integration
@@ -19,10 +18,13 @@ namespace Microwave.Test.Integration
             _powerTube = new PowerTube(_output);
         }
 
-        [Test]
-        public void OnTurnOn_MessageWithPowerOf42_IsMade()
+        [TestCase(42)]
+        [TestCase(15)]
+        [TestCase(1)]
+        [TestCase(99)]
+        public void OnTurnOn_MessageWithPower_IsMade(int power)
         {
-            _powerTube.TurnOn(42);
+            _powerTube.TurnOn(power);
 
         }
 

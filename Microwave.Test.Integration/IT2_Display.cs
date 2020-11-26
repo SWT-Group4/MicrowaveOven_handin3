@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 //using NSubstitute;
 using Microwave.Classes.Boundary;
-using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
 
 namespace Microwave.Test.Integration
@@ -19,10 +18,12 @@ namespace Microwave.Test.Integration
             _display = new Display(_output);
         }
 
-        [Test]
-        public void OnShowTime_OutputWith42MinAnd42Sec_IsMade()
+        [TestCase(42,42)]
+        [TestCase(99, 59)]
+        [TestCase(01, 00)]
+        public void OnShowTime_OutputWith42MinAnd42Sec_IsMade(int min, int sec)
         {
-            _display.ShowTime(42, 42);
+            _display.ShowTime(min, sec);
         }
 
         [Test]
