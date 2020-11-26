@@ -396,9 +396,5 @@ namespace Microwave.Test.Integration
 
         #endregion
 
-        #region Maybe UserInterface <> Door/Button
-
-        #endregion
-
     }
 }
