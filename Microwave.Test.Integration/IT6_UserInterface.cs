@@ -46,6 +46,7 @@ namespace Microwave.Test.Integration
 
         #region UserInterface <> CookController
 
+        // TC01-03
         [TestCase(1)]
         [TestCase(2)]
         [TestCase(10)]
@@ -61,6 +62,7 @@ namespace Microwave.Test.Integration
             _faketimer.Received().Start(Arg.Is(60*min));
         }
 
+        // TC04-06
         [TestCase(1)]
         [TestCase(14)]
         [TestCase(15)]
@@ -82,6 +84,8 @@ namespace Microwave.Test.Integration
                 str.ToLower().Contains(percentagePower.ToString())
             ));
         }
+        
+        //TC07
         [Test]
         public void OnStartCancelPressed_StartsCooking_PowerTubeTurnsOff()
         {
@@ -101,6 +105,8 @@ namespace Microwave.Test.Integration
         #endregion
 
         #region UserInterface <> Display
+            
+        // TC08
         [Test]
         public void OnPowerPressed_PressedOnce_DisplayShowsCorrectPower()
         {
@@ -113,6 +119,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        // TC08
         [Test]
         public void OnPowerPressed_PressedTwice_DisplayShowsCorrectPower()
         {
@@ -129,6 +136,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC09
         [Test]
         public void OnPowerPressed_PressedFourteenTimes_DisplayShowsCorrectPower()
         {
@@ -147,6 +155,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC10
         [Test]
         public void OnPowerPressed_PressedFifteenTimes_PowerRollsOverDisplayShows()
         {
@@ -165,6 +174,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC11
         [Test]
         public void OnTimePressed_PressedOnce_DisplayShowsCorrectTime()
         {
@@ -178,6 +188,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC12
         [Test]
         public void OnTimePressed_PressedTwice_DisplayShowsCorrectTime()
         {
@@ -194,7 +205,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-
+        //TC13
         [Test]
         public void OnStartCancelPressed_StartsCooking_DisplayClears()
         {
@@ -211,6 +222,7 @@ namespace Microwave.Test.Integration
         }
 
         // Extensions behavior
+        //TC14
         [Test]
         public void OnDoorOpened_WhileCooking_DisplayClears()
         {
@@ -226,6 +238,7 @@ namespace Microwave.Test.Integration
 
         }
 
+        //TC15
         [Test]
         public void OnStartCancelPressed_WhileCooking_DisplayClears()
         {
@@ -240,6 +253,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC16
         [Test]
         public void OnDoorOpened_WhileSetupTime_DisplayClears()
         {
@@ -254,6 +268,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC17
         [Test]
         public void OnStartCancelPressed_WhileSetupPower_DisplayClears()
         {
@@ -267,6 +282,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC18
         [Test]
         public void OnDoorOpens_WhileSetupPower_DisplayClears()
         {
@@ -285,6 +301,7 @@ namespace Microwave.Test.Integration
         #endregion
 
         #region UserInterface <> Light
+        //TC19
         [Test]
         public void OnDoorOpened_BeforeSetup_LightLogsTurnOn()
         {
@@ -295,6 +312,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC20
         [Test]
         public void OnDoorOpened_WhilePowerSetup_LightLogsTurnOn()
         {
@@ -307,6 +325,8 @@ namespace Microwave.Test.Integration
                 str.ToLower().Contains("light is turned on")
             ));
         }
+        
+        //TC21
         [Test]
         public void OnDoorOpened_WhileTimeSetup_LightLogsTurnOn()
         {
@@ -321,6 +341,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC22
         [Test]
         public void OnDoorOpened_AfterCooking_LightLogsTurnOn()
         {
@@ -337,6 +358,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC23
         [Test]
         public void OnStartCancelPressed_StartsCooking_LightLogsTurnOn()
         {
@@ -351,6 +373,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC24
         [Test]
         public void OnDoorClosed_NothingElse_LightLogsTurnOff()
         {
@@ -364,6 +387,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC25
         [Test]
         public void OnStartCancelPressed_CookingIsDone_LightLogsTurnOff()
         {
@@ -379,6 +403,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC26
         [Test]
         public void OnStartCancelPressed_WhileCooking_LightLogsTurnOff()
         {
