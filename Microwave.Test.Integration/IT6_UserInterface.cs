@@ -119,7 +119,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        // TC08
+        // TC09
         [Test]
         public void OnPowerPressed_PressedTwice_DisplayShowsCorrectPower()
         {
@@ -136,7 +136,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC09
+        //TC10
         [Test]
         public void OnPowerPressed_PressedFourteenTimes_DisplayShowsCorrectPower()
         {
@@ -155,7 +155,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC10
+        //TC11
         [Test]
         public void OnPowerPressed_PressedFifteenTimes_PowerRollsOverDisplayShows()
         {
@@ -174,7 +174,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC11
+        //TC12
         [Test]
         public void OnTimePressed_PressedOnce_DisplayShowsCorrectTime()
         {
@@ -188,7 +188,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC12
+        //TC13
         [Test]
         public void OnTimePressed_PressedTwice_DisplayShowsCorrectTime()
         {
@@ -205,7 +205,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC13
+        //TC14
         [Test]
         public void OnStartCancelPressed_StartsCooking_DisplayClears()
         {
@@ -222,7 +222,7 @@ namespace Microwave.Test.Integration
         }
 
         // Extensions behavior
-        //TC14
+        //TC15
         [Test]
         public void OnDoorOpened_WhileCooking_DisplayClears()
         {
@@ -238,7 +238,7 @@ namespace Microwave.Test.Integration
 
         }
 
-        //TC15
+        //TC16
         [Test]
         public void OnStartCancelPressed_WhileCooking_DisplayClears()
         {
@@ -253,7 +253,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC16
+        //TC17
         [Test]
         public void OnDoorOpened_WhileSetupTime_DisplayClears()
         {
@@ -268,7 +268,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC17
+        //TC18
         [Test]
         public void OnStartCancelPressed_WhileSetupPower_DisplayClears()
         {
@@ -282,7 +282,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC18
+        //TC19
         [Test]
         public void OnDoorOpens_WhileSetupPower_DisplayClears()
         {
@@ -301,7 +301,7 @@ namespace Microwave.Test.Integration
         #endregion
 
         #region UserInterface <> Light
-        //TC19
+        //TC20
         [Test]
         public void OnDoorOpened_BeforeSetup_LightLogsTurnOn()
         {
@@ -312,7 +312,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC20
+        //TC21
         [Test]
         public void OnDoorOpened_WhilePowerSetup_LightLogsTurnOn()
         {
@@ -326,7 +326,7 @@ namespace Microwave.Test.Integration
             ));
         }
         
-        //TC21
+        //TC22
         [Test]
         public void OnDoorOpened_WhileTimeSetup_LightLogsTurnOn()
         {
@@ -341,7 +341,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC22
+        //TC23
         [Test]
         public void OnDoorOpened_AfterCooking_LightLogsTurnOn()
         {
@@ -358,7 +358,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC23
+        //TC24
         [Test]
         public void OnStartCancelPressed_StartsCooking_LightLogsTurnOn()
         {
@@ -373,7 +373,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC24
+        //TC25
         [Test]
         public void OnDoorClosed_NothingElse_LightLogsTurnOff()
         {
@@ -387,7 +387,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC25
+        //TC26
         [Test]
         public void OnStartCancelPressed_CookingIsDone_LightLogsTurnOff()
         {
@@ -403,7 +403,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC26
+        //TC27
         [Test]
         public void OnStartCancelPressed_WhileCooking_LightLogsTurnOff()
         {
