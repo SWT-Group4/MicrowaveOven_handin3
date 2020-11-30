@@ -46,6 +46,7 @@ namespace Microwave.Test.Integration
         }
 
         #region Door <> UserInterface
+        //TC01
         [Test]
         public void DoorOpen_BeforeSetup_LightLogsTurnOn()
         {
@@ -56,6 +57,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC02
         [Test]
         public void DoorOpenClose_BeforeSetup_LightLogsTurnOff()
         {
@@ -70,7 +72,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-
+        //TC03
         [Test]
         public void DoorOpenClose_WhileCooking_PowertubeTurnsOffAndDisplayClears()
         {
@@ -95,6 +97,7 @@ namespace Microwave.Test.Integration
         // As we thoroughly tested all the possible scenarios in the previous step IT6,
         // we don't need to test all possible combinations of button presses.
         #region Button <> UserInterface
+        //TC04
         [Test]
         public void PowerButtonPress_PressedOnce_DisplayShowsCorrectPower()
         {
@@ -107,6 +110,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC05
         [Test]
         public void TimeButtonPress_PressedOnce_DisplayShowsCorrectTime()
         {
@@ -121,6 +125,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
+        //TC06
         [Test]
         public void StartCancelButtonPress_StartsCooking_PowertubeAndLightLogsTurnsOn()
         {
