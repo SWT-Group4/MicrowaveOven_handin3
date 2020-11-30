@@ -343,23 +343,6 @@ namespace Microwave.Test.Integration
 
         //TC23
         [Test]
-        public void OnDoorOpened_AfterCooking_LightLogsTurnOn()
-        {
-            _fakePowerButton.Pressed += Raise.Event();
-            _fakeTimeButton.Pressed += Raise.Event();
-            _fakeStartCancelButton.Pressed += Raise.Event();
-            _faketimer.Expired += Raise.Event();
-            _fakeoutput.ClearReceivedCalls();
-
-            _fakeDoor.Opened += Raise.Event();
-
-            _fakeoutput.Received().OutputLine(Arg.Is<string>(str =>
-                str.ToLower().Contains("light is turned on")
-            ));
-        }
-
-        //TC24
-        [Test]
         public void OnStartCancelPressed_StartsCooking_LightLogsTurnOn()
         {
             _fakePowerButton.Pressed += Raise.Event();
@@ -373,7 +356,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC25
+        //TC24
         [Test]
         public void OnDoorClosed_NothingElse_LightLogsTurnOff()
         {
@@ -387,7 +370,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC26
+        //TC25
         [Test]
         public void OnStartCancelPressed_CookingIsDone_LightLogsTurnOff()
         {
@@ -403,7 +386,7 @@ namespace Microwave.Test.Integration
             ));
         }
 
-        //TC27
+        //TC26
         [Test]
         public void OnStartCancelPressed_WhileCooking_LightLogsTurnOff()
         {
